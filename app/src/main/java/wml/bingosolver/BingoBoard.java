@@ -175,18 +175,18 @@ public class BingoBoard
 	* 
 	* @return [bingo code, location of bingo]
 	*/
-    public int[] bingoChecking()
+    public int[] bingoChecking(boolean ignore_horizontal, boolean ignore_vertical, boolean ignore_diagonal)
     {
         int[] sol = {0,0};
-        if (horizontalBingo() != -1)
+        if (!ignore_horizontal && horizontalBingo() != -1)
         {
             sol = new int[]{1, horizontalBingo()};
         }
-        else if (verticalBingo() != -1)
+        else if (!ignore_vertical && verticalBingo() != -1)
         {
             sol = new int[]{2, verticalBingo()};
         }
-        else if (diagonalBingo() != -1)
+        else if (!ignore_diagonal && diagonalBingo() != -1)
         {
             sol = new int[]{3, diagonalBingo()};
         }
@@ -240,20 +240,54 @@ public class BingoBoard
         return out;
     }
 
-    public  String toPrettyString()
+    /**
+     * Resets checking system of if piece has been called
+     */
+    public void resetPieces()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                pieces[i][j].called = i == 2 && j == 2 ? true : false;
+            }
+
+        }
+
+
+    }
+
+    public  String toPrettyString(int tab_width, boolean html)
     {
         String ans = "";
+        int boldcount = 0;
         for(int i = 0; i < 5; i++)
         {
             String out = "";
-            for(int j = 0; j< 5; j++)
+            boldcount = 0;
+            for(int j = 0; j < 5; j++)
             {
+
+                String piece_value = "";
                 BingoPiece p = pieces[i][j];
-                String piece_value = p.called? "(" + p.value + ")" :p.value + "";
-//                out = String.format("%s \t -  %s" ,out, piece_value);
-                out = tabsAlternative(4, out) + piece_value;
+                int extra_html_char = html? (boldcount * "<b></b>".length()): -1;
+                if(html && p.called ) {
+                    boldcount++;
+                     piece_value = "<b>" + p.value + "</b>";
+                }
+                else if(p.called)
+                {
+                     piece_value ="(" + p.value + ")";
+                }
+                else
+                {
+                    piece_value = p.value + "";
+                }
+
+                out = tabsAlternative(tab_width, out,  extra_html_char ) + piece_value;
+
             }
-            ans += out + "\n";
+            ans += html? out + "<br>" : out + "\n";
         }
         return ans;
     }
@@ -262,14 +296,29 @@ public class BingoBoard
      * Generates string where the equivalent tab
      * @param tabSize how many spaces a tab can be at maximum
      * @param str initial string that is not tabbed
+     * @param ignore_bolds number characters that are html code
      * @return string + tab
      */
-    public String tabsAlternative(int tabSize, String str)
+    public String tabsAlternative(int tabSize, String str, int ignore_bolds)
     {
-        while(str.length() % tabSize != 0)
+        boolean has_bolds = (ignore_bolds != -1);
+        if( has_bolds)
         {
-            str += " ";
+            while((str.length() - ignore_bolds) % tabSize != 0)
+            {
+                str += "_";
+
+            }
         }
+        else
+        {
+            while((str.length()) % tabSize != 0)
+            {
+                str += " ";
+
+            }
+        }
+
         return str;
 
     }

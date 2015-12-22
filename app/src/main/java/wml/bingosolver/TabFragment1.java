@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,13 +34,13 @@ public class TabFragment1 extends Fragment
 
     Button clearButton;
     Button addButton;
-    Button boardcountbutton;
-    Button fileprintbutton;
+    Button boardcountbutton; // testing
+    Button fileprintbutton; // testing
     Activity activity;
-    EditText printEditText;
+    EditText printEditText; // testing
     static ListView boardsListView;
     static BoardAdapter bAdapter;
-//    View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -192,7 +193,6 @@ public class TabFragment1 extends Fragment
 //                    intent.putExtras(bundle);
 //                    startActivity(intent);
 
-                    //TODO find out if you want to set longclick as alert to option to delete board.
 
                 }
             });
@@ -200,7 +200,7 @@ public class TabFragment1 extends Fragment
             TextView boardContent = (TextView)convertView.findViewById(R.id.singleBoardTextView);
             TextView boardCount = (TextView)convertView.findViewById(R.id.boardInstanceCountTextView);
             Button bingoBoardDeleteButton = (Button)convertView.findViewById(R.id.bingoBoardDeleteButton);
-            boardContent.setText(b.toPrettyString());
+            boardContent.setText(Html.fromHtml(b.toPrettyString(3, true)));
             boardCount.setText("Board " + position);
             bingoBoardDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -214,6 +214,7 @@ public class TabFragment1 extends Fragment
                                     // continue with delete
                                     MainActivity.boards.remove(b);
                                     MainActivity.board_count--;
+                                    NewBoard.exportToFile(getContext());
                                     refreshListView();
 
                                 }

@@ -26,5 +26,33 @@
         android:layout_centerHorizontal="true"
         android:singleLine="true"
         android:imeOptions="actionSend" />
-        <!--android:nextFocusDown="@+id/numberEnteringEditText"/>-->
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ignore Horizontal"
+        android:id="@+id/ignoreHorizontalCheckBox"
+        android:checked="false"
+        android:layout_below="@+id/numberEnteringEditText"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ignore Vertical"
+        android:id="@+id/ignoreVerticalCheckBox"
+        android:layout_below="@+id/ignoreHorizontalCheckBox"
+        android:layout_alignStart="@+id/ignoreHorizontalCheckBox"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ignore Diagonal"
+        android:id="@+id/ignoreDiagonalCheckBox"
+        android:layout_below="@+id/ignoreVerticalCheckBox"
+        android:layout_alignStart="@+id/ignoreVerticalCheckBox"
+        android:checked="false" />
+
+    <!--android:nextFocusDown="@+id/numberEnteringEditText"/>-->
 </RelativeLayout><!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/layout/fragment_tab_fragment2.xml -->
