@@ -3,6 +3,7 @@ package wml.bingosolver;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,9 +25,10 @@ import java.util.ArrayList;
 public class TabFragment2 extends Fragment {
     EditText numberEnteringEditText;
     Activity activity;
-    CheckBox ignoreHorizontalCheckBox;
-    CheckBox ignoreVerticalCheckBox;
-    CheckBox ignoreDiagonalCheckBox;
+    static CheckBox ignoreHorizontalCheckBox;
+    static CheckBox ignoreVerticalCheckBox;
+    static CheckBox ignoreDiagonalCheckBox;
+
 
 
     @Override
@@ -51,7 +53,7 @@ public class TabFragment2 extends Fragment {
                     if(input.length() > 0)
                     {
                         int value = Integer.parseInt(input);
-                        processNumber(value);
+                        processNumber(value,getContext());
                         Log.e(value + "", "value");
                         numberEnteringEditText.setText("");
                         numberEnteringEditText.requestFocus();
@@ -65,8 +67,9 @@ public class TabFragment2 extends Fragment {
         return view;
     }
 
-    public void processNumber(int val)
+    public static void processNumber(int val,Context ctx)
     {
+        MainActivity.called_values.add(val);
         BingoBoard winner = null;
         String[] bingoMessage = null;
         int winningCount = -1;
@@ -104,7 +107,7 @@ public class TabFragment2 extends Fragment {
             Log.e("winner !!!!!!", "win");
             //TODO alert user that there is a bingo.
             String boardDisplayed = winner.toPrettyString(5, false);
-            new AlertDialog.Builder(getContext())
+            new AlertDialog.Builder(ctx)
                     .setTitle("Winning Board " + winningCount + " : " + bingoMessage[0])
                     .setMessage("Bingo at " + bingoMessage[1] + bingoMessage[2] + "\n" + boardDisplayed)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

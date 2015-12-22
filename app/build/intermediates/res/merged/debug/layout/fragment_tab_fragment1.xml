@@ -9,16 +9,18 @@
         android:layout_height="wrap_content"
         android:text="Add Board"
         android:id="@+id/addButton"
-        android:layout_above="@+id/boardsListView"
-        android:layout_toEndOf="@+id/fileprintbutton" />
+        android:layout_below="@+id/fileprintbutton"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="35dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear All"
         android:id="@+id/clearButton"
-        android:layout_above="@+id/boardsListView"
-        android:layout_toStartOf="@+id/fileprintbutton" />
+        android:layout_below="@+id/boardcountbutton"
+        android:layout_alignParentStart="true"
+        android:layout_margin="35dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -35,10 +37,9 @@
         android:layout_height="wrap_content"
         android:text="print file"
         android:id="@+id/fileprintbutton"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@+id/boardcountbutton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -58,8 +59,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/boardsListView"
         android:fastScrollAlwaysVisible="false"
-        android:layout_below="@+id/fileprintbutton"
-        android:layout_marginTop="56dp"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/addButton"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Values"
+        android:id="@+id/resetButton"
+        android:layout_alignTop="@+id/addButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout><!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/layout/fragment_tab_fragment1.xml -->

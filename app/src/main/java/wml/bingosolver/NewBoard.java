@@ -1,6 +1,7 @@
 package wml.bingosolver;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,8 +42,7 @@ public class NewBoard extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Incomplete or repeated numbers in board\n" +
                             "Please enter in values for all boxes.", Toast.LENGTH_SHORT).show();
                 } else {
-                    MainActivity.board_count++;
-                    MainActivity.boards.add(new BingoBoard(bingo_values));
+                    addBoard(bingo_values);
                     exportToFile(getApplicationContext());
                     Toast.makeText(getApplicationContext(), "Successfully added new board.", Toast.LENGTH_SHORT).show();
                     TabFragment1.refreshListView();
@@ -68,14 +68,30 @@ public class NewBoard extends AppCompatActivity {
 
 //                Toast.makeText(getApplicationContext(), "Autopopulate complete", Toast.LENGTH_SHORT).show();
                 Log.d("Autopopulate complete", "a");
-                MainActivity.board_count++;
-                MainActivity.boards.add(new BingoBoard(bingo_values));
+                addBoard(bingo_values);
                 Log.d(MainActivity.boards.size() + "", "autocomplete");
                 exportToFile(getApplicationContext());
                 TabFragment1.refreshListView();
                 finish();
             }
         });
+    }
+
+    public static void addBoard(int[][] bingo_values)
+    {
+        MainActivity.board_count++;
+        BingoBoard temp = new BingoBoard(bingo_values);
+
+
+        //check previously selected numbers called on new board
+
+        for (int called_value : MainActivity.called_values)
+        {
+            temp.call(called_value);
+        }
+
+        MainActivity.boards.add(temp);
+
     }
 
     public static void exportToFile(Context ctx)

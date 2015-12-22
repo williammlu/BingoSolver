@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<BingoBoard> boards;
     public static int board_count;
     EditText printEditText;
-
+    static ArrayList<Integer> called_values = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

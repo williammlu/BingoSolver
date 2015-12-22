@@ -32,10 +32,12 @@ import java.util.ArrayList;
 public class TabFragment1 extends Fragment
 {
 
+
     Button clearButton;
     Button addButton;
     Button boardcountbutton; // testing
     Button fileprintbutton; // testing
+    Button resetButton;
     Activity activity;
     EditText printEditText; // testing
     static ListView boardsListView;
@@ -50,6 +52,9 @@ public class TabFragment1 extends Fragment
         addButton = (Button)view.findViewById(R.id.addButton);
         boardcountbutton = (Button) view.findViewById((R.id.boardcountbutton));
         fileprintbutton = (Button) view.findViewById(R.id.fileprintbutton);
+        resetButton = (Button) view.findViewById(R.id.resetButton);
+
+
         printEditText = (EditText)view.findViewById(R.id.printEditText);
         boardsListView = (ListView) view.findViewById(R.id.boardsListView);
         bAdapter = new BoardAdapter(getContext(), R.layout.board_row_view, MainActivity.boards);
@@ -88,12 +93,47 @@ public class TabFragment1 extends Fragment
 //                Toast.makeText(getActivity(),"Cleared all!",Toast.LENGTH_SHORT).show();
             }
         });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                // TODO make warning before data is set
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Reset Values")
+                        .setMessage("Are you sure you want to reset the values that have been called?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                for(BingoBoard b: MainActivity.boards)
+                                {
+                                    b.resetPieces();
+                                }
+                                MainActivity.called_values.clear();
+                                refreshListView();
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+
+
+//                Toast.makeText(getActivity(),"Cleared all!",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO start new activity to add new board to mainactivity.java's boards variable
                 Intent intent = new Intent(getActivity(), NewBoard.class);
                 startActivity(intent);
+//                TabFragment2.processNumber(-1, getContext());
 
             }
         });
@@ -135,6 +175,9 @@ public class TabFragment1 extends Fragment
 
     }
 
+    /**
+     * Updates the list of bingoboards
+     */
     public static void refreshListView()
     {
         bAdapter.notifyDataSetChanged();
@@ -148,6 +191,7 @@ public class TabFragment1 extends Fragment
     public void clearAllBoardData(Context ctx)
     {
         String FILENAME = "data";
+        MainActivity.called_values.clear();
         try
         {
             FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -184,17 +228,7 @@ public class TabFragment1 extends Fragment
             convertView.setClickable(true);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-//                    //Toast.makeText(getApplicationContext(), pos + "", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SearchActivity.this, DownloadActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    Log.e("title", note.getTitle());
-//                    bundle.putSerializable(MainActivity.NOTE, note);
-//                    intent.putExtras(bundle);
-//                    startActivity(intent);
-
-
-                }
+                public void onClick(View v) {}
             });
             //}
             TextView boardContent = (TextView)convertView.findViewById(R.id.singleBoardTextView);
@@ -226,16 +260,8 @@ public class TabFragment1 extends Fragment
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
-
-
-//                Toast.makeText(getActivity(),"Cleared all!",Toast.LENGTH_SHORT).show();
                 }
             });
-
-
-
-//            textView.setText(note.getDepartment() + " " + note.getClassId() + ": " + note.getTitle());
-//            dateView.setText(note.getNoteDateString());
             return convertView;
         }
     }
