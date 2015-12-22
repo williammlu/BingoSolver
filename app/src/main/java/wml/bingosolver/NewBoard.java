@@ -45,6 +45,8 @@ public class NewBoard extends AppCompatActivity {
                     MainActivity.boards.add(new BingoBoard(bingo_values));
                     exportToFile(getApplicationContext());
                     Toast.makeText(getApplicationContext(), "Successfully added new board.", Toast.LENGTH_SHORT).show();
+                    TabFragment1.refreshListView();
+                    finish();
 
                 }
             }
@@ -68,8 +70,10 @@ public class NewBoard extends AppCompatActivity {
                 Log.d("Autopopulate complete", "a");
                 MainActivity.board_count++;
                 MainActivity.boards.add(new BingoBoard(bingo_values));
-                Log.d("Successfully added new", "a");
+                Log.d(MainActivity.boards.size() + "", "autocomplete");
                 exportToFile(getApplicationContext());
+                TabFragment1.refreshListView();
+                finish();
             }
         });
     }
@@ -82,14 +86,16 @@ public class NewBoard extends AppCompatActivity {
 
         try
         {
+
             FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);
 
             fos.write(output.getBytes());
 //            MainActivity.importBoard(getApplicationContext());
 
             fos.close();
-            MainActivity.importBoard(ctx); // test method
 
+            MainActivity.importBoard(ctx); // test method
+            Log.e("" + MainActivity.boards.size(), "export size");
         }
         catch (IOException ex)
         {

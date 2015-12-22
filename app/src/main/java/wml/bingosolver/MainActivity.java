@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             boards = importBoard(getApplicationContext());
+            System.out.println("Currently there are " + board_count + " a " + boards.size() + " boards");
+
         } catch (IOException ex) {
             Toast.makeText(getApplicationContext(), "Failed to find previous data." +
                     "Add a new board!", Toast.LENGTH_SHORT).show();
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         {
             exp +=  b.toString();
         }
-        System.out.println("export" + exp);
+//        System.out.println("export" + exp);
         return exp;
     }
 
@@ -120,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
         while( (c = fin.read()) != -1){
             temp = temp + Character.toString((char)c);
         }
-        System.out.println("importing:" + temp);
+//        System.out.println("importing:" + temp);
         if(temp.length() > 0) {
 //            Log.e(temp, "something");
 
             Scanner reader = new Scanner(temp);
             String nextline = reader.nextLine();
-            System.out.println(nextline);
+//            System.out.println(nextline);
             int numBoards = Integer.parseInt(nextline);
             board_count = numBoards;
             ArrayList<BingoBoard> board_list = new ArrayList<BingoBoard>();

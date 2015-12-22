@@ -307,6 +307,7 @@
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="hello">Hello World, 		 TesttabsActivity!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>

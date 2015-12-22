@@ -240,4 +240,41 @@ public class BingoBoard
         return out;
     }
 
+    public  String toPrettyString()
+    {
+        String ans = "";
+        for(int i = 0; i < 5; i++)
+        {
+            String out = "";
+            for(int j = 0; j< 5; j++)
+            {
+                BingoPiece p = pieces[i][j];
+                String piece_value = p.called? "(" + p.value + ")" :p.value + "";
+//                out = String.format("%s \t -  %s" ,out, piece_value);
+                out = tabsAlternative(4, out) + piece_value;
+            }
+            ans += out + "\n";
+        }
+        return ans;
+    }
+
+    /**
+     * Generates string where the equivalent tab
+     * @param tabSize how many spaces a tab can be at maximum
+     * @param str initial string that is not tabbed
+     * @return string + tab
+     */
+    public String tabsAlternative(int tabSize, String str)
+    {
+        while(str.length() % tabSize != 0)
+        {
+            str += " ";
+        }
+        return str;
+
+    }
+
+
+
+
 }

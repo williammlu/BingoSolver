@@ -5,11 +5,26 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Tab 2"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Enter in values as they are announced."
+        android:id="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:layout_margin="25dp" />
 
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/numberEnteringEditText"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:singleLine="true"
+        android:imeOptions="actionSend" />
+        <!--android:nextFocusDown="@+id/numberEnteringEditText"/>-->
 </RelativeLayout><!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/layout/fragment_tab_fragment2.xml -->
