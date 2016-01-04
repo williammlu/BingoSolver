@@ -35,6 +35,7 @@
     <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorButtons">#681414</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/res/values/values.xml -->
@@ -320,11 +321,11 @@
     <eat-comment/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--   your app branding color for the app bar -->
-        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimary">#009688</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="colorPrimaryDark">#303F9F</item>
+        <item name="colorPrimaryDark">#004D40</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="colorAccent">#FF4081</item>
+        <item name="colorAccent">#F06292</item>
     </style>
     <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>
@@ -1274,6 +1275,13 @@
         <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="LightTeal" parent="AppTheme">
+        <item name="colorPrimary">#B2DFDB</item>
+        <item name="colorPrimaryDark">#4DB6AC</item>
+        <item name="colorAccent">#F48FB1</item>
     </style>
     <!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>
