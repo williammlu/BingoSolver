@@ -302,22 +302,23 @@ public class BingoBoard
     public String tabsAlternative(int tabSize, String str, int ignore_bolds)
     {
         boolean has_bolds = (ignore_bolds != -1);
-        if( has_bolds)
-        {
+//        if( has_bolds)
+//        {
             while((str.length() - ignore_bolds) % tabSize != 0)
             {
-                str += "_";
+                str += " "; // uses /u2000 empty space
+                // https://www.cs.tut.fi/~jkorpela/chars/spaces.html
 
             }
-        }
-        else
-        {
-            while((str.length()) % tabSize != 0)
-            {
-                str += " ";
-
-            }
-        }
+//        }
+//        else
+//        {
+//            while((str.length()) % tabSize != 0)
+//            {
+//                str += " ";
+//
+//            }
+//        }
 
         return str;
 

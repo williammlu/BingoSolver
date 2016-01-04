@@ -14,7 +14,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -64,6 +66,21 @@ public class TabFragment2 extends Fragment {
                 return handled;
             }
         });
+//        numberEnteringEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus)
+//                {
+//                    Log.e("something", "focuschange");
+//                    if(activity.getCurrentFocus()!=null) {
+//                        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+//                        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+//                    }
+//
+//                    // code to execute when EditText loses focus
+//                }
+//            }
+//        });
         return view;
     }
 

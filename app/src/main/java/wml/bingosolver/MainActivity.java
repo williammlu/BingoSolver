@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Manage Boards"));
-        tabLayout.addTab(tabLayout.newTab().setText("Entering Numbers"));
+        tabLayout.addTab(tabLayout.newTab().setText("Enter Numbers"));
         tabLayout.addTab(tabLayout.newTab().setText("Donate"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -73,7 +74,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            /**
+             * Hides soft keyboard when leaving a tab
+             * Meant for tab 2 where numbers are entered
+             */
             public void onTabUnselected(TabLayout.Tab tab) {
+                Log.e("tab unselected", "mainactivity");
+                hideSoftKeyboard();
 
             }
 
@@ -83,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
 
     /**
      * Exports string equivalent of data.txt

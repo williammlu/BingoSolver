@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="If you enjoyed the application or won something while using it, consider donating!"
+            android:id="@+id/donateTextView"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="101dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <ImageButton
+            android:layout_width="131dip"
+            android:layout_height="25dip"
+            android:id="@+id/venmoButton"
+            android:background="@drawable/venmologo"
+        android:layout_below="@+id/donateTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="172dp" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Tab 3"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:text="Tap to donate with"
+        android:id="@+id/donateTextView2"
+        android:layout_marginBottom="38dp"
+        android:layout_alignBottom="@+id/venmoButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout><!-- From: file:/Users/wml/Desktop/Android%20Projects/BingoSolver/app/src/main/res/layout/fragment_tab_fragment3.xml -->
