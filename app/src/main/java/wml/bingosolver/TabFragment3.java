@@ -3,6 +3,7 @@ package wml.bingosolver;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,6 +22,7 @@ import wml.bingosolver.VenmoLibrary;
 public class TabFragment3 extends Fragment {
 
     ImageButton venmoButton;
+    ImageButton githubButton;
     Activity activity;
     final int REQUEST_CODE_VENMO_APP_SWITCH = 2;
     String venmoSecretCode;
@@ -51,15 +53,18 @@ public class TabFragment3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_tab_fragment3, container, false);
         venmoButton = (ImageButton)view.findViewById(R.id.venmoButton);
+        githubButton = (ImageButton)view.findViewById(R.id.githubButton);
+
+
         venmoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (VenmoLibrary.isVenmoInstalled(activity.getApplicationContext())) {
 
 //                String selfVenmoID = ""; //not necessary
-                    String uploaderVenmoID = "wmlwml";
-                    String paymentAmount = "3.50"; //"0.10";
-                    String paymentNote = "For making a very specific app about Bingo!";
+                    String uploaderVenmoID = "wmlwml"; // my id
+                    String paymentAmount = "3.50";
+                    String paymentNote = "For making a very specific app about Bingo! And perhaps to help me win something!";
                     String txn = "pay";
                     doTransaction(uploaderVenmoID, paymentAmount, paymentNote, txn);
 
@@ -72,16 +77,28 @@ public class TabFragment3 extends Fragment {
         });
 
 
+        githubButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Uri uri = Uri.parse("https://github.com/williammlu/BingoSolver"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+
+            }
+        });
+
+
 
         return view;
     }
     public void doTransaction(String recipient, String amount, String note, String txn) {
         try {
-            Intent venmoIntent = VenmoLibrary.openVenmoPayment("3252", "NotehubTest", recipient, amount, note, txn);
+            Intent venmoIntent = VenmoLibrary.openVenmoPayment("3385", "BingoSolver", recipient, amount, note, txn);
             startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH); //REQUEST_CODE_VENMO_APP_SWITCH is the requestCode we are using for Venmo. Feel free to change this to another number.
         } catch (android.content.ActivityNotFoundException e) //Venmo native app not install on device, so let's instead open a mobile web version of Venmo in a WebView
         {
-            Toast.makeText(activity.getApplicationContext(), "Please install Venmo to download paid notes", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity.getApplicationContext(), "Please install Venmo.", Toast.LENGTH_LONG).show();
         }
     }
 

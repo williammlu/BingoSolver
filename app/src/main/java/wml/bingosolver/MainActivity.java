@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         printEditText = (EditText)findViewById(R.id.printEditText);
-        //TODO: load in board from text file
+
         boards = new ArrayList<BingoBoard>();
         board_count = 0;
         try
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Manage Boards"));
         tabLayout.addTab(tabLayout.newTab().setText("Enter Numbers"));
-        tabLayout.addTab(tabLayout.newTab().setText("Donate"));
+        tabLayout.addTab(tabLayout.newTab().setText("Contribute"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -71,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
+                if(tab.getPosition() == 1)
+                {
+                    Log.e("tab " + tab.getPosition(), "tabs");
+                    // "Enter Numbers" tab
+                    TextView numberEnteringEditText = (TextView) findViewById(R.id.numberEnteringEditText);
+                    numberEnteringEditText.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(numberEnteringEditText, InputMethodManager.SHOW_IMPLICIT);
+                    // keyboard should pop up on
+                }
             }
 
             @Override

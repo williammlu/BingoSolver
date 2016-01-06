@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear All"
+        android:text="Clear All\n Boards"
         android:id="@+id/clearButton"
         android:layout_below="@+id/boardcountbutton"
         android:layout_alignParentStart="true"
@@ -60,12 +60,13 @@
         android:id="@+id/boardsListView"
         android:fastScrollAlwaysVisible="false"
         android:layout_below="@+id/addButton"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset Values"
+        android:text="Reset Called\nValues"
         android:id="@+id/resetButton"
         android:layout_alignTop="@+id/addButton"
         android:layout_centerHorizontal="true" />

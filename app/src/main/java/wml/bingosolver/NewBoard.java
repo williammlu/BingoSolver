@@ -21,7 +21,7 @@ public class NewBoard extends AppCompatActivity {
 
     EditText[] numbers;
     Button addNewBoardButton;
-    Button autopopulateButton;
+    Button autopopulateButton; // for testing
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +39,8 @@ public class NewBoard extends AppCompatActivity {
 
                 int[][] bingo_values = extractValues();
                 if (bingo_values == null) {
-                    Toast.makeText(getApplicationContext(), "Incomplete or repeated numbers in board\n" +
-                            "Please enter in values for all boxes.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Too long, incomplete or repeated numbers in board. " +
+                            "Please enter in values for all boxes.", Toast.LENGTH_LONG).show();
                 } else {
                     addBoard(bingo_values);
                     exportToFile(getApplicationContext());
@@ -134,7 +134,10 @@ public class NewBoard extends AppCompatActivity {
             else
             {
                 String target = numbers[count].getText().toString();
-
+                if (target.length() > 6)
+                {
+                    return null; // maybe too large to parse int
+                }
                 int target_value = (target.equals("")) ? -1 : Integer.parseInt(target);
                 unique_values.add(target_value);
                 if(target_value == -1)

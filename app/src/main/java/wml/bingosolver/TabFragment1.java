@@ -65,7 +65,6 @@ public class TabFragment1 extends Fragment
             @Override
             public void onClick(View v)
             {
-                // TODO make warning before data is set
                 new AlertDialog.Builder(getContext())
                         .setTitle("Delete all boards")
                         .setMessage("Are you sure you want to delete all boards?")
@@ -235,7 +234,7 @@ public class TabFragment1 extends Fragment
             TextView boardCount = (TextView)convertView.findViewById(R.id.boardInstanceCountTextView);
             Button bingoBoardDeleteButton = (Button)convertView.findViewById(R.id.bingoBoardDeleteButton);
             boardContent.setText(Html.fromHtml(b.toPrettyString(3, true)));
-            boardCount.setText("Board " + position);
+            boardCount.setText("Board " + (position + 1)); //boards start at 1
             bingoBoardDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -21,6 +21,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -52,15 +53,21 @@ public class TabFragment2 extends Fragment {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     String input = (numberEnteringEditText.getText().toString());
-                    if(input.length() > 0)
+                    if(input.length() > 0 && input.length() < 7)
                     {
                         int value = Integer.parseInt(input);
                         processNumber(value,getContext());
                         Log.e(value + "", "value");
                         numberEnteringEditText.setText("");
                         numberEnteringEditText.requestFocus();
+                        handled = true;
+
                     }
-                    handled = true;
+                    else
+                    {
+                        Toast.makeText(activity, "Bad number entered", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
                 return handled;
@@ -122,10 +129,9 @@ public class TabFragment2 extends Fragment {
         if( winner!= null)
         {
             Log.e("winner !!!!!!", "win");
-            //TODO alert user that there is a bingo.
             String boardDisplayed = winner.toPrettyString(5, false);
             new AlertDialog.Builder(ctx)
-                    .setTitle("Winning Board " + winningCount + " : " + bingoMessage[0])
+                    .setTitle("Winning Board " + (winningCount + 1) + " : " + bingoMessage[0])
                     .setMessage("Bingo at " + bingoMessage[1] + bingoMessage[2] + "\n" + boardDisplayed)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {

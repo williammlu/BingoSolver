@@ -8,31 +8,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="If you enjoyed the application or won something while using it, consider donating!"
+            android:text="If you won something or enjoyed the app, consider contributing..."
             android:id="@+id/donateTextView"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="101dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-        android:textAlignment="center" />
+            android:layout_marginTop="50dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
-            android:layout_width="131dip"
-            android:layout_height="25dip"
-            android:id="@+id/venmoButton"
-            android:background="@drawable/venmologo"
+        android:layout_width="131dip"
+        android:layout_height="25dip"
+        android:id="@+id/venmoButton"
+        android:background="@drawable/venmologo"
+        android:layout_marginTop="98dp"
         android:layout_below="@+id/donateTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="172dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap to donate with"
+        android:text="To ya boy on"
         android:id="@+id/donateTextView2"
         android:layout_marginBottom="38dp"
         android:layout_alignBottom="@+id/venmoButton"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:id="@+id/githubButton"
+        android:background="@drawable/github_mark"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or suggestions/changes on"
+        android:id="@+id/githubTextView"
+        android:layout_above="@+id/githubButton"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -271,17 +271,19 @@ public class BingoBoard
                 String piece_value = "";
                 BingoPiece p = pieces[i][j];
                 int extra_html_char = html? (boldcount * "<b></b>".length()): -1;
+
+                String piece_v = i==2 && j==2 ? "X": "" + p.value;
                 if(html && p.called ) {
                     boldcount++;
-                     piece_value = "<b>" + p.value + "</b>";
+                     piece_value = "<b>" + piece_v + "</b>";
                 }
                 else if(p.called)
                 {
-                     piece_value ="(" + p.value + ")";
+                     piece_value ="(" + piece_v + ")";
                 }
                 else
                 {
-                    piece_value = p.value + "";
+                    piece_value = piece_v + "";
                 }
 
                 out = tabsAlternative(tab_width, out,  extra_html_char ) + piece_value;

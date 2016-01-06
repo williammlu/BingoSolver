@@ -394,6 +394,7 @@
         android:text="Autopopulate"
         android:id="@+id/autopopulateButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/addNewBoardButton" />
+        android:layout_alignEnd="@+id/addNewBoardButton"
+        android:visibility="gone" />
 
 </RelativeLayout>
